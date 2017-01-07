@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://localhost:8080/services/HelloWord" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://localhost:8080/services/HelloWord" xmlns:intf="http://localhost:8080/services/HelloWord" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+
+   <wsdl:message name="sayHelloWorldFromResponse">
+
+      <wsdl:part name="sayHelloWorldFromReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sayHelloWorldFromRequest">
+
+      <wsdl:part name="from" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="HelloWorld">
+
+      <wsdl:operation name="sayHelloWorldFrom" parameterOrder="from">
+
+         <wsdl:input message="impl:sayHelloWorldFromRequest" name="sayHelloWorldFromRequest"/>
+
+         <wsdl:output message="impl:sayHelloWorldFromResponse" name="sayHelloWorldFromResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="HelloWordSoapBinding" type="impl:HelloWorld">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="sayHelloWorldFrom">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sayHelloWorldFromRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://example" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sayHelloWorldFromResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/services/HelloWord" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="HelloWorldService">
+
+      <wsdl:port binding="impl:HelloWordSoapBinding" name="HelloWord">
+
+         <wsdlsoap:address location="http://localhost:8080/services/HelloWord"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
